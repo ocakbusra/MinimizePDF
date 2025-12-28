@@ -1,0 +1,29 @@
+DNS AYARLARI (Domain Paneline Girilecek Değerler)
+
+Web sitenizi Vercel üzerinden yayınlamak için domaini satın aldığınız firmanın (GoDaddy, İsimtescil, Google Domains vb.) yönetim paneline gidip aşağıdaki 2 kaydı eklemeniz gerekmektedir.
+
+---------------------------------------------------------
+KAYIT 1: Ana Domain Bağlantısı (A Record)
+---------------------------------------------------------
+Tür (Type)    : A
+Ad (Name)     : @  (Eğer @ kabul etmezse boş bırakın)
+Değer (Value) : 76.76.21.21
+TTL           : Otomatik (veya 3600)
+
+---------------------------------------------------------
+KAYIT 2: "www" Bağlantısı (CNAME Record)
+---------------------------------------------------------
+Tür (Type)    : CNAME
+Ad (Name)     : www
+Değer (Value) : cname.vercel-dns.com
+TTL           : Otomatik (veya 3600)
+
+---------------------------------------------------------
+NASIL YAPILIR? (Adım Adım)
+---------------------------------------------------------
+1. Domaini aldığınız sitenin (Örn: GoDaddy) paneline giriş yapın.
+2. "Domainlerim" kısmından minimizepdf.com'u bulun.
+3. "DNS Yönetimi" veya "DNS Ayarları" butonuna tıklayın.
+4. Çıkan listede mevcut gereksiz kayıtlar varsa (Park sayfası vb.) silin.
+5. "Yeni Kayıt Ekle" diyerek yukarıdaki 2 kaydı sırasıyla girin.
+6. Kaydedin. Ayarların tüm dünyada aktif olması 1-24 saat sürebilir.

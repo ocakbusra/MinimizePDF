@@ -17,6 +17,11 @@ export default defineConfig(({ mode }) => {
     build: {
       target: 'esnext'
     },
+    optimizeDeps: {
+      esbuildOptions: {
+        target: 'esnext'
+      }
+    },
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),

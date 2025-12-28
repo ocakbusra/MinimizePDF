@@ -7,11 +7,163 @@ import {
 import { CompressionStatus, PDFFile } from './types';
 import { compressPDF, formatBytes } from './services/pdfService';
 
+// --- TRANSLATIONS ---
+
+const translations = {
+  en: {
+    nav: {
+      howItWorks: "How It Works?",
+      features: "Features",
+      faq: "F.A.Q.",
+      pro: "Pro Version",
+    },
+    hero: {
+      badge: "v2.0 Live",
+      titleStart: "Put Your PDFs",
+      titleEnd: "On A Diet.",
+      subtitle: "Reduce file size up to 90% without losing quality. Enterprise-grade compression, now in your browser.",
+    },
+    compressor: {
+      dropTitle: "Drop Your PDF Here",
+      dropSubtitle: "No limits: 200MB, 500MB or 1GB+. Compress huge files in seconds.",
+      selectBtn: "Select File",
+      fileSize: "Size:",
+      turboMode: "Turbo Mode Ready",
+      important: "Smart Render Mode: Your file will be restructured to remove unnecessary data. Visual quality is preserved while file size is minimized.",
+      startBtn: "Start Compression",
+      processing: "Processing",
+      optStart: "Optimization Started",
+      optDesc: "AI engine is analyzing your file and calculating the best compression ratio.",
+      successTitle: "Great Job!",
+      successDesc: "Your file has been successfully compressed.",
+      oldSize: "Old Size",
+      newSize: "New Size",
+      gain: "Saved",
+      downloadBtn: "Download File",
+      newFileBtn: "Compress Another File",
+      error: "Compression Failed",
+      retry: "Try Again",
+      invalidFile: "Please select a valid PDF file.",
+      genericError: "An error occurred during compression."
+    },
+    features: {
+      title: "Why Minimize PDF?",
+      subtitle: "Beyond standard compressors, architecture specifically designed for large files.",
+      secureTitle: "100% Secure",
+      secureDesc: "Files are processed in your browser. Never uploaded to our servers, your privacy is guaranteed.",
+      fastTitle: "Lightning Fast",
+      fastDesc: "Files are analyzed and compressed in seconds thanks to WASM technology.",
+      smartTitle: "Smart Algorithm",
+      smartDesc: "Cleans unnecessary metadata and optimizes images without quality loss."
+    },
+    howItWorks: {
+      title: "How Our Tech Works?",
+      desc: "Minimize PDF analyzes the PDF structure at an elemental level. Removes invisible and unnecessary layers, simplifies vectors, and reprocesses images in next-gen formats.",
+      step1: "File analysis and structure mapping",
+      step2: "Cleaning unnecessary data",
+      step3: "Smart reconstruction",
+      layerTitle: "PDF Layers",
+      layerDesc: "Complex structure simplified"
+    },
+    footer: {
+      desc: "Professional PDF compression tool designed for large files. Secure, fast, and free.",
+      product: "Product",
+      legal: "Legal",
+      privacy: "Privacy Policy",
+      terms: "Terms of Use",
+      contact: "Contact",
+      rights: "Minimize PDF. All rights reserved."
+    }
+  },
+  tr: {
+    nav: {
+      howItWorks: "Nasıl Çalışır?",
+      features: "Özellikler",
+      faq: "S.S.S.",
+      pro: "Pro Sürüm",
+    },
+    hero: {
+      badge: "v2.0 Yayında",
+      titleStart: "PDF Dosyalarınız",
+      titleEnd: "Rejim Yapsın.",
+      subtitle: "Görüntü kalitesini bozmadan dosya boyutunu %90'a kadar küçültün. Kurumsal seviyede sıkıştırma, şimdi tarayıcınızda.",
+    },
+    compressor: {
+      dropTitle: "PDF Dosyanızı Buraya Bırakın",
+      dropSubtitle: "Sınır yok: 200MB, 500MB veya 1GB+. Dev dosyaları saniyeler içinde küçültün.",
+      selectBtn: "Dosya Seçin",
+      fileSize: "Boyut:",
+      turboMode: "Turbo Mod Hazır",
+      important: "Akıllı Render Modu: Dosyanız yeniden yapılandırılarak gereksiz veriler temizlenecek. Görsel kalite korunurken dosya boyutu minimuma indirilir.",
+      startBtn: "Sıkıştırmayı Başlat",
+      processing: "İşleniyor",
+      optStart: "Optimizasyon Başladı",
+      optDesc: "Yapay zeka motorumuz dosyanızı analiz ediyor ve en iyi sıkıştırma oranını hesaplıyor.",
+      successTitle: "Harika İş!",
+      successDesc: "Dosyanız başarıyla küçültüldü.",
+      oldSize: "Eski Boyut",
+      newSize: "Yeni Boyut",
+      gain: "Kazanç",
+      downloadBtn: "Dosyayı İndir",
+      newFileBtn: "Yeni Dosya Yükle",
+      error: "Sıkıştırma Başarısız",
+      retry: "Tekrar Dene",
+      invalidFile: "Lütfen geçerli bir PDF seçin.",
+      genericError: "Sıkıştırma sırasında bir hata oluştu."
+    },
+    features: {
+      title: "Neden Minimize PDF?",
+      subtitle: "Standart sıkıştırıcıların ötesinde, büyük dosyalar için özel olarak geliştirilmiş mimari.",
+      secureTitle: "Tamamen Güvenli",
+      secureDesc: "Dosyalarınız tarayıcınızda işlenir. Sunucularımıza asla yüklenmez, gizliliğiniz %100 güvendedir.",
+      fastTitle: "Yıldırım Hızında",
+      fastDesc: "WASM teknolojisi sayesinde dosyalarınız saniyeler içinde analiz edilir ve sıkıştırılır.",
+      smartTitle: "Akıllı Algoritma",
+      smartDesc: "Gereksiz meta verileri temizler ve görselleri kalite kaybı olmadan optimize eder."
+    },
+    howItWorks: {
+      title: "Teknolojimiz Nasıl Çalışıyor?",
+      desc: "Minimize PDF, PDF yapısını elementer düzeyde analiz eder. Görünmeyen ve gereksiz katmanları kaldırır, vektörleri basitleştirir ve görselleri yeni nesil formatlarda yeniden işler.",
+      step1: "Dosya analizi ve yapı haritalama",
+      step2: "Gereksiz verilerin temizlenmesi",
+      step3: "Akıllı yeniden oluşturma",
+      layerTitle: "PDF Katmanları",
+      layerDesc: "Karmaşık yapı basitleştirilir"
+    },
+    footer: {
+      desc: "Büyük dosyalar için tasarlanmış profesyonel PDF sıkıştırma aracı. Güvenli, hızlı ve ücretsiz.",
+      product: "Ürün",
+      legal: "Yasal",
+      privacy: "Gizlilik Politikası",
+      terms: "Kullanım Şartları",
+      contact: "İletişim",
+      rights: "Minimize PDF. Tüm hakları saklıdır."
+    }
+  }
+};
+
+// --- LANGUAGE CONTEXT ---
+
+interface LanguageContextType {
+  language: 'en' | 'tr';
+  setLanguage: (lang: 'en' | 'tr') => void;
+  t: any;
+}
+
+const LanguageContext = React.createContext<LanguageContextType>({
+  language: 'en',
+  setLanguage: () => { },
+  t: translations.en
+});
+
+const useLanguage = () => React.useContext(LanguageContext);
+
 // --- COMPONENTS ---
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
@@ -19,22 +171,32 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const toggleLanguage = () => {
+    setLanguage(language === 'en' ? 'tr' : 'en');
+  };
+
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="bg-indigo-600 p-2 rounded-xl">
-            <Zap className="text-white w-6 h-6" />
-          </div>
-          <span className="text-xl font-black tracking-tight text-slate-900">Minimize<span className="text-indigo-600">PDF</span></span>
-        </div>
+        <a href="#" className="flex items-center group">
+          <span className="text-xl font-black tracking-tight leading-none transition-transform duration-300 group-hover:scale-105">
+            <span className="text-slate-800">minimize</span>
+            <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">pdf</span>
+          </span>
+        </a>
 
         <div className="hidden md:flex items-center gap-8 font-medium text-slate-600">
-          <a href="#nasil-calisir" className="hover:text-indigo-600 transition-colors">Nasıl Çalışır?</a>
-          <a href="#ozellikler" className="hover:text-indigo-600 transition-colors">Özellikler</a>
-          <a href="#sss" className="hover:text-indigo-600 transition-colors">S.S.S.</a>
+          <a href="#how-it-works" className="hover:text-indigo-600 transition-colors">{t.nav.howItWorks}</a>
+          <a href="#features" className="hover:text-indigo-600 transition-colors">{t.nav.features}</a>
+          <button
+            onClick={toggleLanguage}
+            className="flex items-center gap-1 hover:text-indigo-600 transition-colors"
+          >
+            <Globe size={18} />
+            <span className="uppercase">{language}</span>
+          </button>
           <button className="bg-slate-900 text-white px-6 py-2.5 rounded-full font-bold hover:bg-slate-800 transition-all hover:shadow-lg active:scale-95">
-            Pro Sürüm
+            {t.nav.pro}
           </button>
         </div>
 
@@ -46,9 +208,13 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="absolute top-full left-0 right-0 bg-white border-b border-slate-100 p-6 md:hidden flex flex-col gap-4 shadow-xl animate-in slide-in-from-top-4">
-          <a href="#nasil-calisir" className="text-lg font-medium text-slate-600" onClick={() => setMobileMenuOpen(false)}>Nasıl Çalışır?</a>
-          <a href="#ozellikler" className="text-lg font-medium text-slate-600" onClick={() => setMobileMenuOpen(false)}>Özellikler</a>
-          <button className="bg-indigo-600 text-white py-3 rounded-xl font-bold w-full">Pro Sürüm</button>
+          <a href="#how-it-works" className="text-lg font-medium text-slate-600" onClick={() => setMobileMenuOpen(false)}>{t.nav.howItWorks}</a>
+          <a href="#features" className="text-lg font-medium text-slate-600" onClick={() => setMobileMenuOpen(false)}>{t.nav.features}</a>
+          <button onClick={() => { toggleLanguage(); setMobileMenuOpen(false); }} className="flex items-center gap-2 text-lg font-medium text-slate-600">
+            <Globe size={20} />
+            {language === 'en' ? 'Türkçe' : 'English'}
+          </button>
+          <button className="bg-indigo-600 text-white py-3 rounded-xl font-bold w-full">{t.nav.pro}</button>
         </div>
       )}
     </nav>
@@ -61,11 +227,13 @@ const PDFCompressor = () => {
   const [progress, setProgress] = useState<number>(0);
   const [error, setError] = useState<string | null>(null);
 
+  const { t } = useLanguage();
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
     if (selectedFile) {
       if (selectedFile.type !== 'application/pdf') {
-        setError('Lütfen geçerli bir PDF seçin.');
+        setError(t.compressor.invalidFile);
         return;
       }
       setFile({
@@ -91,7 +259,7 @@ const PDFCompressor = () => {
       } : null);
       setStatus(CompressionStatus.COMPLETED);
     } catch (err: any) {
-      setError(err.message || 'Sıkıştırma sırasında bir hata oluştu.');
+      setError(err.message || t.compressor.genericError);
       setStatus(CompressionStatus.ERROR);
     }
   };
@@ -133,10 +301,10 @@ const PDFCompressor = () => {
             <div className="bg-indigo-50 w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform duration-500 group-hover:bg-indigo-100">
               <FileUp className="text-indigo-600 w-12 h-12 md:w-16 md:h-16" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-black text-slate-800 mb-4 tracking-tight">PDF Dosyanızı Buraya Bırakın</h2>
-            <p className="text-slate-500 text-lg mb-8 max-w-md mx-auto">200MB, 500MB veya 1GB+ fark etmeksizin tüm büyük dosyalarınızı saniyeler içinde küçültün.</p>
+            <h2 className="text-3xl md:text-4xl font-black text-slate-800 mb-4 tracking-tight">{t.compressor.dropTitle}</h2>
+            <p className="text-slate-500 text-lg mb-8 max-w-md mx-auto">{t.compressor.dropSubtitle}</p>
             <button className="bg-indigo-600 text-white px-10 py-5 rounded-full font-bold text-lg shadow-xl shadow-indigo-200 group-hover:shadow-2xl group-hover:-translate-y-1 transition-all">
-              Dosya Seçin
+              {t.compressor.selectBtn}
             </button>
           </div>
         )}
@@ -150,7 +318,7 @@ const PDFCompressor = () => {
               <div className="flex-1 min-w-0">
                 <h4 className="font-black text-xl text-slate-800 truncate mb-1">{file.name}</h4>
                 <div className="flex items-center gap-3 text-sm">
-                  <span className="text-slate-500 font-medium">Boyut:</span>
+                  <span className="text-slate-500 font-medium">{t.compressor.fileSize}</span>
                   <span className="text-indigo-600 font-black">{formatBytes(file.size)}</span>
                 </div>
               </div>
@@ -162,7 +330,7 @@ const PDFCompressor = () => {
             <div className="bg-amber-50 rounded-3xl p-6 border border-amber-100 flex gap-4">
               <ShieldCheck className="text-amber-600 shrink-0 mt-1" size={24} />
               <p className="text-sm text-amber-900 leading-relaxed font-medium">
-                <strong>Akıllı Render Modu:</strong> Dosyanız yeniden yapılandırılarak gereksiz veriler temizlenecek. Görsel kalite korunurken dosya boyutu minimuma indirilir.
+                <strong>{t.compressor.important}</strong>
               </p>
             </div>
 
@@ -171,7 +339,7 @@ const PDFCompressor = () => {
               className="w-full bg-slate-900 hover:bg-black text-white font-bold py-6 rounded-[2rem] shadow-2xl hover:shadow-xl transition-all active:scale-[0.98] flex items-center justify-center gap-3 text-xl group"
             >
               <Zap size={24} className="text-indigo-400 group-hover:scale-125 transition-transform" />
-              Sıkıştırmayı Başlat
+              {t.compressor.startBtn}
             </button>
           </div>
         )}
@@ -183,12 +351,12 @@ const PDFCompressor = () => {
               <div className="absolute inset-0 border-4 border-indigo-600 rounded-full border-t-transparent animate-spin" />
               <div className="absolute inset-0 flex items-center justify-center flex-col">
                 <span className="text-3xl font-black text-indigo-600">%{progress}</span>
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">İşleniyor</span>
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">{t.compressor.processing}</span>
               </div>
             </div>
             <div>
-              <h3 className="text-2xl font-black text-slate-900 mb-2">Optimizasyon Başladı</h3>
-              <p className="text-slate-500 font-medium max-w-sm mx-auto">Yapay zeka motorumuz dosyanızı analiz ediyor ve en iyi sıkıştırma oranını hesaplıyor.</p>
+              <h3 className="text-2xl font-black text-slate-900 mb-2">{t.compressor.optStart}</h3>
+              <p className="text-slate-500 font-medium max-w-sm mx-auto">{t.compressor.optDesc}</p>
             </div>
             <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden max-w-md mx-auto">
               <div className="h-full bg-indigo-600 transition-all duration-300" style={{ width: `${progress}%` }} />
@@ -203,22 +371,22 @@ const PDFCompressor = () => {
                 <Sparkles className="absolute -top-2 -right-2 text-yellow-400 animate-bounce" />
                 <CheckCircle2 size={40} />
               </div>
-              <h3 className="text-4xl font-black text-slate-900 mb-2">Harika İş!</h3>
-              <p className="text-slate-500 font-medium">Dosyanız başarıyla küçültüldü.</p>
+              <h3 className="text-4xl font-black text-slate-900 mb-2">{t.compressor.successTitle}</h3>
+              <p className="text-slate-500 font-medium">{t.compressor.successDesc}</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 text-center">
-                <p className="text-xs font-bold text-slate-400 uppercase mb-1">Eski Boyut</p>
+                <p className="text-xs font-bold text-slate-400 uppercase mb-1">{t.compressor.oldSize}</p>
                 <p className="text-xl font-bold text-slate-600 line-through">{formatBytes(file.size)}</p>
               </div>
               <div className="bg-indigo-50 p-6 rounded-2xl border border-indigo-100 text-center relative overflow-hidden">
                 <div className="absolute inset-0 bg-indigo-600/5 rotate-12 scale-150 transform transition-transform" />
-                <p className="text-xs font-bold text-indigo-400 uppercase mb-1">Yeni Boyut</p>
+                <p className="text-xs font-bold text-indigo-400 uppercase mb-1">{t.compressor.newSize}</p>
                 <p className="text-3xl font-black text-indigo-600">{formatBytes(file.compressedSize || 0)}</p>
               </div>
               <div className="bg-green-50 p-6 rounded-2xl border border-green-100 text-center">
-                <p className="text-xs font-bold text-green-600 uppercase mb-1">Kazanç</p>
+                <p className="text-xs font-bold text-green-600 uppercase mb-1">{t.compressor.gain}</p>
                 <p className="text-3xl font-black text-green-600">%{ratio}</p>
               </div>
             </div>
@@ -229,13 +397,13 @@ const PDFCompressor = () => {
                 className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-6 rounded-2xl shadow-xl shadow-indigo-200 transition-all active:scale-[0.98] flex items-center justify-center gap-3 text-xl"
               >
                 <Download size={24} />
-                Dosyayı İndir
+                {t.compressor.downloadBtn}
               </button>
               <button
                 onClick={reset}
                 className="w-full bg-white text-slate-500 font-bold py-4 rounded-xl hover:bg-slate-50 transition-all text-sm"
               >
-                Yeni Dosya Yükle
+                {t.compressor.newFileBtn}
               </button>
             </div>
           </div>
@@ -245,7 +413,7 @@ const PDFCompressor = () => {
           <div className="p-6 bg-red-50 border border-red-100 rounded-2xl flex items-center gap-4 text-red-600">
             <AlertCircle size={24} />
             <div className="flex-1 font-medium">{error}</div>
-            <button onClick={reset} className="text-sm font-bold underline">Tekrar Dene</button>
+            <button onClick={reset} className="text-sm font-bold underline">{t.compressor.retry}</button>
           </div>
         )}
       </div>
@@ -254,30 +422,32 @@ const PDFCompressor = () => {
 };
 
 const Features = () => {
+  const { t } = useLanguage();
+
   const features = [
     {
       icon: <Lock className="text-indigo-600" size={32} />,
-      title: "Tamamen Güvenli",
-      desc: "Dosyalarınız tarayıcınızda işlenir. Sunucularımıza asla yüklenmez, gizliliğiniz %100 güvendedir."
+      title: t.features.secureTitle,
+      desc: t.features.secureDesc
     },
     {
       icon: <Zap className="text-amber-500" size={32} />,
-      title: "Yıldırım Hızında",
-      desc: "WASM teknolojisi sayesinde dosyalarınız saniyeler içinde analiz edilir ve sıkıştırılır."
+      title: t.features.fastTitle,
+      desc: t.features.fastDesc
     },
     {
       icon: <Cpu className="text-cyan-500" size={32} />,
-      title: "Akıllı Algoritma",
-      desc: "Gereksiz meta verileri temizler ve görselleri kalite kaybı olmadan optimize eder."
+      title: t.features.smartTitle,
+      desc: t.features.smartDesc
     }
   ];
 
   return (
-    <section id="ozellikler" className="py-24 bg-white">
+    <section id="features" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">Neden Minimize PDF?</h2>
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto">Standart sıkıştırıcıların ötesinde, büyük dosyalar için özel olarak geliştirilmiş mimari.</p>
+          <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">{t.features.title}</h2>
+          <p className="text-lg text-slate-500 max-w-2xl mx-auto">{t.features.subtitle}</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-12">
@@ -297,8 +467,10 @@ const Features = () => {
 }
 
 const HowItWorks = () => {
+  const { t } = useLanguage();
+
   return (
-    <section id="nasil-calisir" className="py-24 bg-slate-900 text-white overflow-hidden relative">
+    <section id="how-it-works" className="py-24 bg-slate-900 text-white overflow-hidden relative">
       <div className="absolute top-0 left-0 w-full h-full opacity-10">
         <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-indigo-500 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-fuchsia-600 rounded-full blur-3xl" />
@@ -307,9 +479,9 @@ const HowItWorks = () => {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="flex flex-col md:flex-row items-center gap-16">
           <div className="flex-1 space-y-8">
-            <h2 className="text-3xl md:text-5xl font-black tracking-tight leading-tight">Teknolojimiz Nasıl Çalışıyor?</h2>
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight leading-tight">{t.howItWorks.title}</h2>
             <p className="text-indigo-200 text-lg leading-relaxed max-w-lg">
-              Minimize PDF, PDF yapısını elementer düzeyde analiz eder. Görünmeyen ve gereksiz katmanları kaldırır, vektörleri basitleştirir ve görselleri yeni nesil formatlarda yeniden işler.
+              {t.howItWorks.desc}
             </p>
             <div className="flex flex-col gap-6">
               {[1, 2, 3].map((step) => (
@@ -318,9 +490,9 @@ const HowItWorks = () => {
                     0{step}
                   </div>
                   <p className="font-medium text-slate-300">
-                    {step === 1 && "Dosya analizi ve yapı haritalama"}
-                    {step === 2 && "Gereksiz verilerin temizlenmesi"}
-                    {step === 3 && "Akıllı yeniden oluşturma"}
+                    {step === 1 && t.howItWorks.step1}
+                    {step === 2 && t.howItWorks.step2}
+                    {step === 3 && t.howItWorks.step3}
                   </p>
                 </div>
               ))}
@@ -334,8 +506,8 @@ const HowItWorks = () => {
                   <div className="w-16 h-16 rounded-full bg-amber-400 border-4 border-slate-900" />
                   <div className="w-16 h-16 rounded-full bg-cyan-400 border-4 border-slate-900" />
                 </div>
-                <h4 className="text-2xl font-bold">PDF Katmanları</h4>
-                <p className="text-sm text-indigo-300">Karmaşık yapı basitleştirilir</p>
+                <h4 className="text-2xl font-bold">{t.howItWorks.layerTitle}</h4>
+                <p className="text-sm text-indigo-300">{t.howItWorks.layerDesc}</p>
               </div>
             </div>
             {/* Decorative blobs */}
@@ -348,50 +520,58 @@ const HowItWorks = () => {
   );
 }
 
-const Footer = () => (
-  <footer className="bg-slate-950 text-slate-400 py-12 border-t border-slate-900">
-    <div className="max-w-7xl mx-auto px-6">
-      <div className="grid md:grid-cols-4 gap-12 mb-12">
-        <div className="col-span-2">
-          <div className="flex items-center gap-2 mb-6">
-            <div className="bg-indigo-600 p-2 rounded-lg">
-              <Zap className="text-white w-4 h-4" />
-            </div>
-            <span className="text-lg font-black text-white">Minimize<span className="text-indigo-500">PDF</span></span>
-          </div>
-          <p className="max-w-xs text-sm leading-relaxed">
-            Büyük dosyalar için tasarlanmış profesyonel PDF sıkıştırma aracı. Güvenli, hızlı ve ücretsiz.
-          </p>
-        </div>
-        <div>
-          <h4 className="text-white font-bold mb-6">Ürün</h4>
-          <ul className="space-y-4 text-sm">
-            <li><a href="#" className="hover:text-white transition-colors">Özellikler</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">Pro Sürüm</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">API</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="text-white font-bold mb-6">Yasal</h4>
-          <ul className="space-y-4 text-sm">
-            <li><a href="#" className="hover:text-white transition-colors">Gizlilik Politikası</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">Kullanım Şartları</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">İletişim</a></li>
-          </ul>
-        </div>
-      </div>
-      <div className="pt-8 border-t border-slate-900 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-bold uppercase tracking-widest">
-        <p>&copy; {new Date().getFullYear()} Minimize PDF. Tüm hakları saklıdır.</p>
-        <div className="flex items-center gap-2">
-          <Globe size={14} />
-          <span>Türkiye / Türkçe</span>
-        </div>
-      </div>
-    </div>
-  </footer>
-);
+const Footer = () => {
+  const { t } = useLanguage();
 
-const App: React.FC = () => {
+  return (
+    <footer className="bg-slate-950 text-slate-400 py-12 border-t border-slate-900">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid md:grid-cols-4 gap-12 mb-12">
+          <div className="col-span-2">
+            <div className="flex items-center gap-2 mb-6">
+              <div className="bg-indigo-600 p-2 rounded-lg">
+                <Zap className="text-white w-4 h-4" />
+              </div>
+              <span className="text-lg font-black text-white">Minimize<span className="text-indigo-500">PDF</span></span>
+            </div>
+            <p className="max-w-xs text-sm leading-relaxed">
+              {t.footer.desc}
+            </p>
+          </div>
+          <div>
+            <h4 className="text-white font-bold mb-6">{t.footer.product}</h4>
+            <ul className="space-y-4 text-sm">
+              <li><a href="#features" className="hover:text-white transition-colors">{t.nav.features}</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">{t.nav.pro}</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">API</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-white font-bold mb-6">{t.footer.legal}</h4>
+            <ul className="space-y-4 text-sm">
+              <li><a href="#" className="hover:text-white transition-colors">{t.footer.privacy}</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">{t.footer.terms}</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">{t.footer.contact}</a></li>
+            </ul>
+          </div>
+        </div>
+        <div className="pt-8 border-t border-slate-900 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-bold uppercase tracking-widest">
+          <p>&copy; {new Date().getFullYear()} {t.footer.rights}</p>
+          <div className="flex items-center gap-2">
+            <Globe size={14} />
+            <span>English / Türkçe</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+// --- APP ---
+
+const AppContent = () => {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-900 font-sans selection:bg-indigo-500 selection:text-white">
       <Navbar />
@@ -408,14 +588,14 @@ const App: React.FC = () => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
               </span>
-              <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">v2.0 Yayında</span>
+              <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">{t.hero.badge}</span>
             </div>
             <h1 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tighter mb-6 leading-[1.1] animate-in slide-in-from-bottom-4 fade-in duration-700 delay-100">
-              PDF Dosyalarınız <br />
-              <span className="text-indigo-600 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-fuchsia-600">Rejim Yapsın.</span>
+              {t.hero.titleStart} <br />
+              <span className="text-indigo-600 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-fuchsia-600">{t.hero.titleEnd}</span>
             </h1>
             <p className="text-xl text-slate-500 font-medium leading-relaxed mb-10 animate-in slide-in-from-bottom-4 fade-in duration-700 delay-200">
-              Görüntü kalitesini bozmadan dosya boyutunu %90'a kadar küçültün. Kurumsal seviyede sıkıştırma, şimdi tarayıcınızda.
+              {t.hero.subtitle}
             </p>
           </div>
 
@@ -429,6 +609,22 @@ const App: React.FC = () => {
       <HowItWorks />
       <Footer />
     </div>
+  );
+};
+
+const App: React.FC = () => {
+  const [currentLang, setCurrentLang] = useState<'en' | 'tr'>('en');
+
+  return (
+    <LanguageContext.Provider
+      value={{
+        language: currentLang,
+        setLanguage: setCurrentLang,
+        t: translations[currentLang]
+      }}
+    >
+      <AppContent />
+    </LanguageContext.Provider>
   );
 };
 
