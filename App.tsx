@@ -597,6 +597,7 @@ const LandingPage = () => {
   const { t, language } = useLanguage();
 
   // Default values based on current language
+  // Default values based on current language
   let pageData = {
     title: language === 'tr' ? 'Minimize PDF - Ücretsiz 200MB+ PDF Sıkıştırıcı' : 'Minimize PDF - Free 200MB+ PDF Compressor',
     description: language === 'tr' ? '200MB üzeri PDF dosyalarını ücretsiz sıkıştırın. %90\'a varan sıkıştırma.' : 'Free PDF compressor for 200MB+ files. Up to 90% compression.',
@@ -605,6 +606,20 @@ const LandingPage = () => {
     heroTitleEnd: t.hero.titleEnd,
     heroSubtitle: t.hero.subtitle
   };
+
+  // Dynamic Title Logic
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        document.title = language === 'tr' ? '⏳ Dosyanız Hazır!' : '⏳ Your file is ready!';
+      } else {
+        document.title = pageData.title; // Restore original title
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, [language, pageData.title]);
 
   // If slug exists, try to find matching SEO page
   if (slug) {
