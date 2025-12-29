@@ -565,7 +565,7 @@ const Footer = () => {
             <h4 className="text-white font-bold mb-6">{t.footer.product}</h4>
             <ul className="space-y-4 text-sm">
               <li><a href="#features" className="hover:text-white transition-colors">{t.nav.features}</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">{t.nav.pro}</a></li>
+              <li><Link to="/pro" className="hover:text-white transition-colors">{t.nav.pro}</Link></li>
               <li><a href="#" className="hover:text-white transition-colors">API</a></li>
             </ul>
           </div>
