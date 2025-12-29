@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { CompressionStatus, PDFFile } from './types';
 import { compressPDF, formatBytes } from './services/pdfService';
+import { ConsentBanner } from './ConsentBanner';
 
 // --- TRANSLATIONS ---
 
@@ -156,7 +157,7 @@ const LanguageContext = React.createContext<LanguageContextType>({
   t: translations.en
 });
 
-const useLanguage = () => React.useContext(LanguageContext);
+export const useLanguage = () => React.useContext(LanguageContext);
 
 // --- COMPONENTS ---
 
@@ -609,6 +610,7 @@ const AppContent = () => {
 
       <Features />
       <HowItWorks />
+      <ConsentBanner />
       <Footer />
     </div>
   );
