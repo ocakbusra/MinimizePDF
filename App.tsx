@@ -12,6 +12,7 @@ import { Helmet } from 'react-helmet-async';
 import { seoPages } from './src/seoData';
 import { PrivacyPolicy } from './PrivacyPolicy';
 import { TermsOfUse } from './TermsOfUse';
+import { ProVersion } from './ProVersion';
 // --- TRANSLATIONS ---
 
 const translations = {
@@ -202,9 +203,9 @@ const Navbar = () => {
             <Globe size={18} />
             <span className="uppercase">{language}</span>
           </button>
-          <button className="bg-slate-900 text-white px-6 py-2.5 rounded-full font-bold hover:bg-slate-800 transition-all hover:shadow-lg active:scale-95">
+          <Link to="/pro" className="bg-slate-900 text-white px-6 py-2.5 rounded-full font-bold hover:bg-slate-800 transition-all hover:shadow-lg active:scale-95 text-center">
             {t.nav.pro}
-          </button>
+          </Link>
         </div>
 
         <button className="md:hidden text-slate-900" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
@@ -221,7 +222,7 @@ const Navbar = () => {
             <Globe size={20} />
             {language === 'en' ? 'Türkçe' : 'English'}
           </button>
-          <button className="bg-indigo-600 text-white py-3 rounded-xl font-bold w-full">{t.nav.pro}</button>
+          <Link to="/pro" onClick={() => setMobileMenuOpen(false)} className="bg-indigo-600 text-white py-3 rounded-xl font-bold w-full text-center">{t.nav.pro}</Link>
         </div>
       )}
     </nav>
@@ -683,6 +684,7 @@ const AppContent = () => {
       <Route path="/" element={<LandingPage />} />
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       <Route path="/terms-of-use" element={<TermsOfUse />} />
+      <Route path="/pro" element={<ProVersion />} />
       <Route path="/:slug" element={<LandingPage />} />
     </Routes>
   );
