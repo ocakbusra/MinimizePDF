@@ -11,7 +11,7 @@ import { Routes, Route, useParams, Navigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { seoPages } from './src/seoData';
 import { PrivacyPolicy } from './PrivacyPolicy';
-
+import { TermsOfUse } from './TermsOfUse';
 // --- TRANSLATIONS ---
 
 const translations = {
@@ -572,7 +572,7 @@ const Footer = () => {
             <h4 className="text-white font-bold mb-6">{t.footer.legal}</h4>
             <ul className="space-y-4 text-sm">
               <li><Link to="/privacy-policy" className="hover:text-white transition-colors">{t.footer.privacy}</Link></li>
-              <li><a href="#" className="hover:text-white transition-colors">{t.footer.terms}</a></li>
+              <li><Link to="/terms-of-use" className="hover:text-white transition-colors">{t.footer.terms}</Link></li>
               <li><a href="#" className="hover:text-white transition-colors">{t.footer.contact}</a></li>
             </ul>
           </div>
@@ -682,6 +682,7 @@ const AppContent = () => {
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+      <Route path="/terms-of-use" element={<TermsOfUse />} />
       <Route path="/:slug" element={<LandingPage />} />
     </Routes>
   );
