@@ -532,6 +532,21 @@ const Footer = () => {
   return (
     <footer className="bg-slate-950 text-slate-400 py-12 border-t border-slate-900">
       <div className="max-w-7xl mx-auto px-6">
+        <div className="border-b border-slate-900 pb-12 mb-12">
+          <h4 className="text-white font-bold mb-6">Popular Compressions</h4>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-y-3 gap-x-4">
+            {seoPages.map((page) => (
+              <a
+                key={page.slug}
+                href={`/${page.slug}`}
+                className="text-xs text-slate-500 hover:text-indigo-400 transition-colors"
+              >
+                {page.heroTitleStart} {page.heroTitleEnd}
+              </a>
+            ))}
+          </div>
+        </div>
+
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-2">
             <div className="flex items-center gap-2 mb-6">
