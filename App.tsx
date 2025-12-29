@@ -432,7 +432,7 @@ const Features = () => {
 
   const features = [
     {
-      icon: <Lock className="text-indigo-600" size={32} />,
+      icon: <Lock className="text-green-600" size={32} />,
       title: t.features.secureTitle,
       desc: t.features.secureDesc
     },
