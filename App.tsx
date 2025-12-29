@@ -13,6 +13,7 @@ import { seoPages } from './src/seoData';
 import { PrivacyPolicy } from './PrivacyPolicy';
 import { TermsOfUse } from './TermsOfUse';
 import { ProVersion } from './ProVersion';
+import { AdvertisementBox } from './AdvertisementBox';
 // --- TRANSLATIONS ---
 
 const translations = {
@@ -369,6 +370,13 @@ const PDFCompressor = () => {
             <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden max-w-md mx-auto">
               <div className="h-full bg-indigo-600 transition-all duration-300" style={{ width: `${progress}%` }} />
             </div>
+            {/* Processing Ad - Gold Spot */}
+            <AdvertisementBox
+              slot="processing-slot-id"
+              style={{ width: '300px', height: '250px' }}
+              className="mt-8"
+              label="Processing Ad (300x250)"
+            />
           </div>
         )}
 
@@ -413,6 +421,15 @@ const PDFCompressor = () => {
               >
                 {t.compressor.newFileBtn}
               </button>
+            </div>
+
+            {/* Download Page Ad - Safe Buffer Zone */}
+            <div className="mt-12 border-t border-slate-100 pt-8">
+              <AdvertisementBox
+                slot="download-slot-id"
+                style={{ width: '300px', height: '250px' }}
+                label="Download Page Ad (300x250)"
+              />
             </div>
           </div>
         )}
@@ -681,6 +698,15 @@ const LandingPage = () => {
 
           <div className="animate-in slide-in-from-bottom-8 fade-in duration-1000 delay-300">
             <PDFCompressor />
+
+            {/* ATF Ad Strategy - Below Tool */}
+            <AdvertisementBox
+              slot="atf-slot-id"
+              style={{ minHeight: '100px' }}
+              responsive={true}
+              className="mt-16 max-w-3xl mx-auto"
+              label="ATF Ad (Responsive)"
+            />
           </div>
         </div>
       </main>
