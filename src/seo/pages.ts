@@ -3,6 +3,8 @@
  * Programmatic SEO pages for different compression targets and use cases
  */
 
+import { articleContents } from './generated_articles';
+
 export interface SEOPageData {
     slug: string;
     title: string;
@@ -16,6 +18,7 @@ export interface SEOPageData {
     targetSize?: string; // For HowTo schema
     relatedSlugs: string[]; // For internal linking
     faq: Array<{ question: string; answer: string }>;
+    articleContent?: string;
 }
 
 /**
@@ -555,6 +558,148 @@ export const seoPages: SEOPageData[] = [
             { question: 'What is WhatsApp\'s file size limit?', answer: 'WhatsApp allows files up to 100MB, but smaller files (under 5MB) share much faster on mobile data.' },
             { question: 'Can I share my compressed PDF on Telegram?', answer: 'Yes! Telegram supports up to 2GB, but compression makes sharing faster and saves data.' },
         ],
+    },
+
+    // --- ARTICLE PAGES ---
+    {
+        slug: 'how-to-email-large-pdf-files-gmail',
+        type: 'use-case',
+        title: 'How to Email Large PDF Files via Gmail (Bypass 25MB Limit)',
+        description: 'Learn how to bypass Gmail 25MB attachment limit. Compress large PDF files for email without using Google Drive links.',
+        keywords: ['email large pdf', 'gmail pdf limit', 'bypass gmail 25mb', 'send large pdf gmail'],
+        heroBadge: 'EMAIL GUIDE',
+        heroTitleStart: 'Email Large PDF',
+        heroTitleEnd: 'via Gmail',
+        heroSubtitle: 'Bypass the 25MB limit. Learn the professional way to send large documents without getting bounced.',
+        relatedSlugs: ['shrink-pdf-for-email-attachment', 'compress-pdf-to-100kb', 'reduce-pdf-to-10mb'],
+        faq: [],
+        articleContent: articleContents['how-to-email-large-pdf-files-gmail']
+    },
+    {
+        slug: 'how-to-reduce-pdf-file-size-without-losing-quality',
+        type: 'use-case',
+        title: 'How to Reduce PDF File Size Without Losing Quality',
+        description: 'Step-by-step guide to reducing PDF file size without blurring images or ruining text. Maintain professional quality.',
+        keywords: ['reduce pdf size no quality loss', 'lossless pdf compression', 'compress pdf keep quality'],
+        heroBadge: 'QUALITY GUIDE',
+        heroTitleStart: 'Reduce Size',
+        heroTitleEnd: 'Keep Quality',
+        heroSubtitle: 'Don\'t sacrifice clarity for size. Learn the secrets of high-quality PDF compression.',
+        relatedSlugs: ['compress-pdf-high-quality-100kb', 'compress-portfolio-pdf-high-quality', 'maximum-pdf-compression-free'],
+        faq: [],
+        articleContent: articleContents['how-to-reduce-pdf-file-size-without-losing-quality']
+    },
+    {
+        slug: 'compress-pdf-for-whatsapp',
+        type: 'use-case',
+        title: 'Compress PDF for WhatsApp: Send Large Documents Easily',
+        description: 'How to compress PDF files for WhatsApp sharing. Send large documents quickly on mobile data.',
+        keywords: ['whatsapp pdf compression', 'send large pdf whatsapp', 'mobile pdf compressor'],
+        heroBadge: 'WHATSAPP GUIDE',
+        heroTitleStart: 'Compress PDF for',
+        heroTitleEnd: 'WhatsApp',
+        heroSubtitle: 'Stop wasting mobile data. Compress your documents for instant sharing on WhatsApp.',
+        relatedSlugs: ['reduce-pdf-for-whatsapp-sharing', 'shrink-pdf-for-email-attachment'],
+        faq: [],
+        articleContent: articleContents['compress-pdf-for-whatsapp']
+    },
+    {
+        slug: 'compress-pdf-catalogs-for-web-speed',
+        type: 'use-case',
+        title: 'Web Speed Optimization: Compress PDF Catalogs',
+        description: 'Optimize PDF catalogs for faster web loading. Improve SEO and user experience by shrinking catalog files.',
+        keywords: ['optimize pdf for web', 'pdf seo', 'fast loading pdf', 'compress pdf catalog'],
+        heroBadge: 'WEB SPEED',
+        heroTitleStart: 'Optimize Catalogs for',
+        heroTitleEnd: 'Speed',
+        heroSubtitle: 'Large catalogs kill web performance. Learn how to optimize them for instant loading.',
+        relatedSlugs: ['optimize-pdf-for-web-100kb', 'compress-pdf-to-5mb'],
+        faq: [],
+        articleContent: articleContents['compress-pdf-catalogs-for-web-speed']
+    },
+    {
+        slug: 'why-scanned-pdfs-are-large-how-to-shrink',
+        type: 'use-case',
+        title: 'Why Scanned PDFs Are So Large & How to Shrink Them',
+        description: 'Understand why scanned documents are huge and how to shrink them instantly. Fix bloated scan files.',
+        keywords: ['shrink scanned pdf', 'compress scan', 'reduce scanned file size', 'why is my pdf so big'],
+        heroBadge: 'SCAN FIX',
+        heroTitleStart: 'Shrink Scanned',
+        heroTitleEnd: 'PDFs',
+        heroSubtitle: 'Scanned files are often just giant images. Learn how to turn them into efficient, small documents.',
+        relatedSlugs: ['compress-pdf-under-20mb', 'reduce-pdf-below-100kb'],
+        faq: [],
+        articleContent: articleContents['why-scanned-pdfs-are-large-how-to-shrink']
+    },
+    {
+        slug: 'fix-pdf-upload-failed-errors',
+        type: 'use-case',
+        title: 'Fix "PDF Upload Failed" Errors: Reducing File Size',
+        description: 'Troubleshoot PDF upload errors on online portals. Fix file size limit exceeded messages instantly.',
+        keywords: ['pdf upload failed', 'file size limit exceeded', 'fix pdf upload error', 'compress pdf for portal'],
+        heroBadge: 'ERROR FIX',
+        heroTitleStart: 'Fix Upload',
+        heroTitleEnd: 'Errors',
+        heroSubtitle: 'Getting "File Too Large" errors? Here is the instant fix for online application portals.',
+        relatedSlugs: ['compress-pdf-to-200kb', 'reduce-pdf-size-below-1mb', 'compress-pdf-for-job-application'],
+        faq: [],
+        articleContent: articleContents['fix-pdf-upload-failed-errors']
+    },
+    {
+        slug: 'how-to-compress-multiple-pdf-files-batch',
+        type: 'use-case',
+        title: 'Batch Processing: How to Compress Multiple PDFs',
+        description: 'Learn how to compress multiple PDF files at once. efficient batch processing workflow for professionals.',
+        keywords: ['batch pdf compression', 'compress multiple pdfs', 'bulk pdf reducer'],
+        heroBadge: 'BATCH MODE',
+        heroTitleStart: 'Compress Multiple',
+        heroTitleEnd: 'Files',
+        heroSubtitle: 'Need to process 50 files? Don\'t do it one by one. Learn the batch processing workflow.',
+        relatedSlugs: ['compress-pdf-to-1mb', 'compress-pdf-under-20mb'],
+        faq: [],
+        articleContent: articleContents['how-to-compress-multiple-pdf-files-batch']
+    },
+    {
+        slug: 'how-to-compress-encrypted-password-protected-pdf',
+        type: 'use-case',
+        title: 'How to Compress Encrypted/Password-Protected PDFs',
+        description: 'Guide to compressing locked or password-protected PDF files. Unlock and shrink secure documents.',
+        keywords: ['compress encrypted pdf', 'compress locked pdf', 'reduce size password protected pdf'],
+        heroBadge: 'UNLOCK & SHRINK',
+        heroTitleStart: 'Compress Locked',
+        heroTitleEnd: 'PDFs',
+        heroSubtitle: 'Encryption blocks standard compression. Here is the workaround to shrink protected files.',
+        relatedSlugs: ['compress-bank-statement-pdf', 'optimize-pdf-for-uyap-court'],
+        faq: [],
+        articleContent: articleContents['how-to-compress-encrypted-password-protected-pdf']
+    },
+    {
+        slug: 'optimize-pdf-before-printing-save-ink',
+        type: 'use-case',
+        title: 'Save Ink & Paper: Optimize PDFs Before Printing',
+        description: 'Why you should optimize PDFs before printing. Save ink, speed up spooling, and prevent print errors.',
+        keywords: ['optimize pdf for print', 'save ink pdf', 'flatten pdf for printing'],
+        heroBadge: 'PRINT OPTIMIZATION',
+        heroTitleStart: 'Optimize for',
+        heroTitleEnd: 'Printing',
+        heroSubtitle: 'Printers choke on complex files. Optimize them first to save time, ink, and paper.',
+        relatedSlugs: ['flatten-pdf-for-printing', 'compress-portfolio-pdf-high-quality'],
+        faq: [],
+        articleContent: articleContents['optimize-pdf-before-printing-save-ink']
+    },
+    {
+        slug: 'share-heavy-pdf-reports-slack-teams-without-lag',
+        type: 'use-case',
+        title: 'Share Heavy PDF Reports on Slack & Teams',
+        description: 'Best practices for sharing heavy PDF reports on Slack and Microsoft Teams without lag or storage issues.',
+        keywords: ['share pdf slack', 'teams pdf limit', 'compress pdf for slack', 'remote work pdf'],
+        heroBadge: 'TEAM SHARE',
+        heroTitleStart: 'Share on',
+        heroTitleEnd: 'Slack/Teams',
+        heroSubtitle: 'Don\'t clog your team\'s chat with giant files. Compress first for instant previews and happy colleagues.',
+        relatedSlugs: ['compress-pdf-to-1mb', 'reduce-pdf-to-10mb'],
+        faq: [],
+        articleContent: articleContents['share-heavy-pdf-reports-slack-teams-without-lag']
     },
 ];
 

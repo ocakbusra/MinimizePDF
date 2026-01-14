@@ -866,6 +866,18 @@ const LandingPage: React.FC<LandingPageProps> = ({ pageData, isHomePage = false 
       {/* Turkish SEO Content (only on homepage) */}
       {language === 'tr' && isHome && <SEOContent />}
 
+      {/* Article Content for specific pages */}
+      {currentPageData?.articleContent && (
+        <section className="py-20 bg-white border-t border-slate-100">
+          <div className="max-w-4xl mx-auto px-6 text-slate-700 leading-relaxed font-sans">
+            <article
+              className="prose prose-slate prose-lg max-w-none"
+              dangerouslySetInnerHTML={{ __html: currentPageData.articleContent }}
+            />
+          </div>
+        </section>
+      )}
+
       {/* FAQ Section for programmatic pages */}
       {currentPageData?.faq && currentPageData.faq.length > 0 && (
         <FAQSection faqs={currentPageData.faq} />
