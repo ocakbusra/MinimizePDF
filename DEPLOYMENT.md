@@ -1,55 +1,37 @@
 # Web Sitesini Yayınlama ve Domain Bağlama Rehberi
 
-Web sitenizi **minimizepdf.com** adresinde yayınlamak için aşağıdaki adımları takip edebilirsiniz. En kolay ve ücretsiz yöntem **Vercel** veya **Netlify** kullanmaktır.
+Web sitenizi **minimizepdf.com** adresinde yayınlamak için GitHub Pages kullanılmaktadır. Proje, kodlar GitHub'a yüklendiğinde otomatik olarak yayınlanacak şekilde yapılandırılmıştır.
 
-## Hazırlık
-Projenize domain ayarları için gerekli dosyalar (`CNAME`, `robots.txt`, `meta tags`) tarafımdan eklenmiştir. Siteniz yayınlanmaya hazırdır.
+## GitHub Pages ile Otomatik Yayınlama
 
----
+Bu proje için **GitHub Actions** kurulumu yapılmıştır. Kodlarınızı `main` dalına (branch) gönderdiğinizde (push), sistem otomatik olarak projeyi derler ve yayınlar.
 
-## 1. Yöntem: Vercel ile Yayınlama (Önerilen)
+### Nasıl Çalışır?
+1. Kod değişikliklerinizi yapın ve `main` dalına gönderin (push).
+2. GitHub Actions otomatik olarak çalışır (`.github/workflows/deploy.yml`).
+3. Proje derlenir (`npm run build`) ve oluşturulan dosyalar `gh-pages` dalına yüklenir.
+4. GitHub Pages ayarlarından kaynak olarak `gh-pages` seçili olduğu sürece siteniz güncellenir.
 
-En hızlı ve React projeleri için en optimize yöntemdir.
+### Domain ve DNS Ayarları
+Proje içerisinde `public/CNAME` dosyası mevcuttur ve içeriği `minimizepdf.com` olarak ayarlanmıştır.
 
-1. **GitHub'a Yükleyin**:
-   - Kodlarınızı bir GitHub deposuna (repository) yükleyin.
+Eğer domain ayarlarını henüz yapmadıysanız, domain sağlayıcınızın (GoDaddy, İsimtescil, Google Domains vb.) DNS yönetim panelinden aşağıdaki kayıtları ekleyin:
 
-2. **Vercel'e Üye Olun**:
-   - [vercel.com](https://vercel.com) adresine gidin ve GitHub hesabınızla giriş yapın.
+1. **CNAME Kaydı**:
+   - **Host/Ad**: `www`
+   - **Hedef**: `[kullaniciadi].github.io` (GitHub kullanıcı adınız)
 
-3. **Projeyi İçe Aktarın**:
-   - "Add New Project" butonuna tıklayın.
-   - GitHub'daki `Large-PDF-Minimizer` deponuzu seçin.
-   - Ayarları değiştirmeden **Deploy** butonuna basın.
+2. **A Kayıtları (GitHub Pages IP Adresleri)**:
+   - Host/Ad: `@` -> `185.199.108.153`
+   - Host/Ad: `@` -> `185.199.109.153`
+   - Host/Ad: `@` -> `185.199.110.153`
+   - Host/Ad: `@` -> `185.199.111.153`
 
-4. **Domain Bağlama**:
-   - Proje panelinden **Settings** > **Domains** sekmesine gidin.
-   - `minimizepdf.com` adresini kutuya yazın ve "Add" butonuna basın.
-   - Vercel size 2 adet DNS kaydı (A Record ve CNAME) verecektir.
-
-5. **DNS Ayarlarını Yapın (Domain Aldığınız Sitede)**:
-   - Domaini satın aldığınız sitenin (GoDaddy, İsimtescil, Google Domains vb.) yönetim paneline girin.
-   - **DNS Yönetimi** sayfasına gidin.
-   - Vercel'in size verdiği değerleri girin:
-     - **A Record**: `@` -> `76.76.21.21` (Vercel IP'si)
-     - **CNAME Record**: `www` -> `cname.vercel-dns.com`
-
----
-
-## 2. Yöntem: GitHub Pages (Alternatif)
-
-Eğer GitHub Pages kullanacaksanız, proje içine eklediğim `CNAME` dosyası işinizi kolaylaştıracaktır.
-
-1. Projenin `Settings` > `Pages` bölümüne gidin.
-2. `Source` olarak `main` veya `master` dalını seçin.
-3. `Custom domain` kısmına `minimizepdf.com` yazıp kaydedin.
-4. Domain sağlayıcınızda (GoDaddy vb.) aşağıdaki DNS ayarını yapın:
-   - **CNAME**: `www` -> `[kullaniciadi].github.io`
-   - **A Kayıtları**: GitHub'ın standart IP adresleri (185.199.108.153 vb.)
+### GitHub Ayarları Kontrolü
+GitHub repository ayarlarında `Settings` > `Pages` kısmına giderek şunları doğrulayın:
+- **Build and deployment > Source**: `Deploy from a branch`
+- **Branch**: `gh-pages` / `/ (root)`
+- **Custom domain**: `minimizepdf.com` (Enforce HTTPS işaretli olmalı)
 
 ---
-
-## Önemli Notlar
-
-- DNS değişikliklerinin tüm dünyada aktif olması 24-48 saati bulabilir.
-- HTTPS (Güvenli Bağlantı) sertifikası Vercel veya Netlify tarafından otomatik olarak ücretsiz sağlanacaktır.
+*Not: Vercel kullanımı iptal edilmiştir. Sadece GitHub Pages kullanılmaktadır.*
