@@ -27,7 +27,7 @@ export const Footer: React.FC = () => {
                     </div>
                 </div>
 
-                <div className="grid md:grid-cols-4 gap-12 mb-12">
+                <div className="grid md:grid-cols-5 gap-12 mb-12">
                     <div className="col-span-2">
                         <div className="flex items-center gap-2 mb-6">
                             <div className="bg-indigo-600 p-2 rounded-lg">
@@ -53,6 +53,12 @@ export const Footer: React.FC = () => {
                             <li><Link to="/privacy-policy" className="hover:text-white transition-colors">{t.footer.privacy}</Link></li>
                             <li><Link to="/terms-of-use" className="hover:text-white transition-colors">{t.footer.terms}</Link></li>
                             <li><a href="mailto:support@minimizepdf.com" className="hover:text-white transition-colors">{t.footer.contact}</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 className="text-white font-bold mb-6">{t.footer.guides}</h4>
+                        <ul className="space-y-4 text-sm">
+                            <li><a href="/guides/" className="hover:text-white transition-colors">{t.footer.guides}</a></li>
                         </ul>
                     </div>
                 </div>
