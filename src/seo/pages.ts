@@ -4,22 +4,17 @@
  */
 
 import { articleContents } from './generated_articles';
-
-export interface SEOPageData {
-    slug: string;
-    title: string;
-    description: string;
-    keywords: string[];
-    heroBadge: string;
-    heroTitleStart: string;
-    heroTitleEnd: string;
-    heroSubtitle: string;
-    type: 'size' | 'use-case';
-    targetSize?: string; // For HowTo schema
-    relatedSlugs: string[]; // For internal linking
-    faq: Array<{ question: string; answer: string }>;
-    articleContent?: string;
-}
+import { SEOPageData } from './types';
+import { architectsPage } from './pages/architects';
+import { lawyersPage } from './pages/lawyers';
+import { realEstatePage } from './pages/realEstate';
+import { hrPage } from './pages/hr';
+import { accountantsPage } from './pages/accountants';
+import { consultantsPage } from './pages/consultants';
+import { contractorsPage } from './pages/contractors';
+import { medicalPage } from './pages/medical';
+import { eventPlannersPage } from './pages/eventPlanners';
+import { logisticsPage } from './pages/logistics';
 
 /**
  * Get related pages for internal linking
@@ -701,6 +696,18 @@ export const seoPages: SEOPageData[] = [
         faq: [],
         articleContent: articleContents['share-heavy-pdf-reports-slack-teams-without-lag']
     },
+
+    // --- NEW USE CASES (BATCH 1 & 2) ---
+    architectsPage,
+    lawyersPage,
+    realEstatePage,
+    hrPage,
+    accountantsPage,
+    consultantsPage,
+    contractorsPage,
+    medicalPage,
+    eventPlannersPage,
+    logisticsPage,
 ];
 
 export default seoPages;
